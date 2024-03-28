@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, NotFoundException, Param, Patch, Post, Put } from '@nestjs/common';
 import { PostsService } from './posts.service';
 
-import PostDTO from 'src/dto/postDTO';
 
 
 
@@ -12,14 +11,14 @@ export class PostsController {
   // GET /posts
   //  모든 post를 가져온다
   @Get()
-  getPosts(): PostDTO[] {
+  getPosts() {
     return this.postsService.getAllPosts();
   }
 
   // GET /posts:id
   //  id에 해당하는 post를 가져온다
   @Get(':id')
-  getPost(@Param('id') id: string): PostDTO {
+  getPost(@Param('id') id: string){
     return this.postsService.getPostById(id);
   }
 
@@ -30,7 +29,7 @@ export class PostsController {
     @Body('author') author: string,
     @Body('title') title: string,
     @Body('content') content: string,
-  ): PostDTO {
+  ) {
     return this.postsService.createPost(author,title,content);
   }
 
@@ -43,14 +42,14 @@ export class PostsController {
     @Body('author') author?: string,
     @Body('title') title?: string,
     @Body('content') content?: string,
-  ): PostDTO {
+  ) {
     return this.postsService.updatePost(id,author,title,content);
   }
 
   // DELETE /posts/:id
   //  id에 해당하는 post를 삭제한다.
   @Delete(':id')
-  deletePost(@Param() id: string): string {
+  deletePost(@Param() id: string)  {
     return this.postsService.deletePost(id);
   }
 }
