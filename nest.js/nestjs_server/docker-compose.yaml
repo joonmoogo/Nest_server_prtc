@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:15
+    # postgres 이미지를 사용해서
+    restart: always
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      # postgres-data 폴더와 var/lib/postgresql/data 폴더와 싱크를 맞춘다
+    ports:
+      - "5432:5432"
+      # 5432로 요청이 들어오면 5432로 매핑해준다
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: postgres
